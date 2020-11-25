@@ -5,62 +5,80 @@ package domain;
 import java.util.Scanner;
 
 /**
+ * 
+ * <h1>DataUser</h1>
+ * Aquesta classe serveix per agafar els paràmetres que l'usuari introdueix 
+ * a la consola per crear un vehicle
+ * 
+ * 
  * @author stefano
  *
  */
 public class DataUser {
 
 	private String typeVehicle;
-	private String carBrand;
-	private String carColour;
-	private String carPlate;
+	private String Brand;
+	private String Color;
+	private String Plate;
 	Scanner myObj = new Scanner(System.in);
 	
 	
+	/**
+	 * Constructor DataUser
+	 */
 	public  DataUser() {
 		
 		typeVehicle=null;
-		carBrand = null;
-		carColour = null;
-		carPlate = null;
+		Brand = null;
+		Color = null;
+		Plate = null;
 	}
 	
 	
-	public DataUser(String typeVehicle)throws Exception {
-		
+	
+	/**
+	 * Constructor de DataUser 
+	 * @param typeVehicle
+	 * @throws Exception
+	 */
+	public DataUser(String typeVehicle) throws Exception {
+
 		if (typeVehicle.equals("car")) {
-		
-		this.typeVehicle=typeVehicle.toLowerCase();
-		
+
+			this.typeVehicle = typeVehicle.toLowerCase();
+
 		}
-		
+
 		else {
 			throw new Exception();
 		}
-				
+
 	}
 	
 	
 	/**
 	 * 
-	 * Mètode que pregunta les dades d'un vehicle a l'usuari i les emmagatzema
+	 * Mètode que pregunta les dades d'un vehicle (marca,color, matrícula) a
+	 * l'usuari i les emmagatzema internament
+	 * 
 	 * @throws Exception
 	 * 
-	 * NOTE: Falta implementar llençar una excepció segons si s'han introduït malament les dades 
+	 *NOTE: Falta implementar el tipus d'excepció que llença
+	 * en cas d'introduir malament les dades
 	 */
-	public void askDataToUser() throws Exception{
-		//TODO: Llençar Exception en cas que la marca, color o matrícula no encaixin
+	public void askDataToUser() throws Exception {
+		// TODO: Llençar Exception en cas que la marca, color o matrícula no encaixin
 		if (typeVehicle.equals("car")) {
-			
-			System.out.println ("De quina marca és el cotxe?" );
+
+			System.out.println("De quina marca és el cotxe?");
 			setBrand(myObj.nextLine().toLowerCase());
-			System.out.println ("De quina color és el cotxe?" );
-			setColour(myObj.nextLine().toLowerCase());
-	    	System.out.println ("Quina matrícula té el cotxe?" );
-	    	setPlate(myObj.nextLine().toLowerCase());
-			
+			System.out.println("De quina color és el cotxe?");
+			setColor(myObj.nextLine().toLowerCase());
+			System.out.println("Quina matrícula té el cotxe?");
+			setPlate(myObj.nextLine().toLowerCase());
+
 		}
-		
+
 		else {
 			throw new Exception();
 		}
@@ -73,17 +91,17 @@ public class DataUser {
 	}
 
 	public String getPlate() {
-		return carPlate;
+		return Plate;
 
 	}
 
 	public String getBrand() {
-		return carBrand;
+		return Brand;
 
 	}
 
-	public String getColour() {
-		return carColour;
+	public String getColor() {
+		return Color;
 
 	}
     
@@ -92,17 +110,17 @@ public class DataUser {
 	}
 
 	public void setPlate(String plate) {
-		this.carPlate=plate;
+		this.Plate=plate;
 
 	}
 
 	public void setBrand(String brand) {
-		this.carBrand=brand;
+		this.Brand=brand;
 
 	}
 
-	public void setColour(String colour) {
-		this.carColour=colour;
+	public void setColor(String colour) {
+		this.Color=colour;
 
 	}
     

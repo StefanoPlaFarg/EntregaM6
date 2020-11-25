@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 
 /**
+ * Classe que permet guardar vehicles en una ArraList i que permet accedir a ells
  * @author stefano
  *
  */
@@ -21,6 +22,10 @@ public class VehicleRepository {
 		
 	}
 	
+	/**
+	 * Mètode que retorna una còpia del repositori vehicleRepository 
+	 * @return ArrayList<Vehicle>
+	 */
 	public ArrayList<Vehicle> getAllVehicles(){
 		return new ArrayList<>(vehicleRepository);
 	}
