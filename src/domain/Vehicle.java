@@ -15,4 +15,12 @@ public abstract class Vehicle {
 		this.brand = brand;
 		this.color = color;
 	}
+	
+	public Vehicle() {
+		this.plate = null;
+		this.brand = null;
+		this.color = null;
+	}
+	
+	
 }

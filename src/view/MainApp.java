@@ -21,10 +21,16 @@ public class MainApp {
 		
 		System.out.println ("Comença el programa" );
 		
-		controller.createCar(controller.getDataToCreateVehicle("Car"));
-		
-		
-		
+		try {
+		controller.createVehicle("car");
+		}catch (Exception e){
+			System.out.println ("No s'ha pogut crear el cotxe correctament" );
+			
+		}finally {
+			
+			System.out.println ("S'ha creat el cotxe correctament" );
+			
+		}
 		
 
 	}
