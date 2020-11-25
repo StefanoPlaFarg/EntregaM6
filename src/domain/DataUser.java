@@ -2,13 +2,15 @@
  * 
  */
 package domain;
+
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * 
- * <h1>DataUser</h1>
- * Aquesta classe serveix per agafar els paràmetres que l'usuari introdueix 
- * a la consola per crear un vehicle
+ * <h1>DataUser</h1> Aquesta classe serveix per agafar els paràmetres que
+ * l'usuari introdueix a la consola per crear un vehicle
  * 
  * 
  * @author stefano
@@ -17,27 +19,38 @@ import java.util.Scanner;
 public class DataUser {
 
 	private String typeVehicle;
-	private String Brand;
-	private String Color;
-	private String Plate;
+	private String brand;
+	private String color;
+	private String plate;
+	private String frontWheelBrand;
+	private String backWheelBrand;
+	private float frontWheelDiameter;
+	private float backWheelDiameter;
+
+	List<Wheel> frontWheels = new ArrayList<Wheel>();
+	List<Wheel> backWheels = new ArrayList<Wheel>();
 	Scanner myObj = new Scanner(System.in);
-	
-	
+
 	/**
 	 * Constructor DataUser
 	 */
-	public  DataUser() {
-		
-		typeVehicle=null;
-		Brand = null;
-		Color = null;
-		Plate = null;
+	public DataUser() {
+
+		typeVehicle = null;
+		brand = null;
+		color = null;
+		plate = null;
+		frontWheels = null;
+		backWheels = null;
+		frontWheelBrand = null;
+		backWheelBrand = null;
+		frontWheelDiameter = 0;
+		backWheelDiameter = 0;
 	}
-	
-	
-	
+
 	/**
-	 * Constructor de DataUser 
+	 * Constructor de DataUser
+	 * 
 	 * @param typeVehicle
 	 * @throws Exception
 	 */
@@ -54,8 +67,7 @@ public class DataUser {
 		}
 
 	}
-	
-	
+
 	/**
 	 * 
 	 * Mètode que pregunta les dades d'un vehicle (marca,color, matrícula) a
@@ -63,10 +75,10 @@ public class DataUser {
 	 * 
 	 * @throws Exception
 	 * 
-	 *NOTE: Falta implementar el tipus d'excepció que llença
-	 * en cas d'introduir malament les dades
+	 *                   NOTE: Falta implementar el tipus d'excepció que llença en
+	 *                   cas d'introduir malament les dades
 	 */
-	public void askDataToUser() throws Exception {
+	public void askBasicCarDataToUser() throws Exception {
 		// TODO: Llençar Exception en cas que la marca, color o matrícula no encaixin
 		if (typeVehicle.equals("car")) {
 
@@ -83,48 +95,113 @@ public class DataUser {
 			throw new Exception();
 		}
 	}
-	
-	
+
+	/**
+	 * 
+	 * Mètode que pregunta les dades de les rodes davanteres i posteriors (marca i
+	 * diàmetre) a l'usuari i les emmagatzema internament
+	 * 
+	 * @throws Exception
+	 * 
+	 *                   NOTE: Falta implementar el tipus d'excepció que llença en
+	 *                   cas d'introduir malament les dades
+	 */
+	public void askWheelDataToUser() throws Exception {
+
+		if (typeVehicle.equals("car")) {
+
+			System.out.println("Quina marca tenen els pneumatics davanters?");
+			setFrontWheelBrand(myObj.nextLine().toLowerCase());
+			System.out.println("Quina diametre tenen els pneumatics davanters?");
+			setFrontWheelDiameter(myObj.nextLine());
+			System.out.println("Quina marca tenen els pneumatics posteriors?");
+			setBackWheelBrand(myObj.nextLine().toLowerCase());
+			System.out.println("Quina diametre tenen els pneumatics posteriors?");
+			setBackWheelDiameter(myObj.nextLine());
+		}
+
+		else {
+			throw new Exception();
+		}
+	}
+
 	public String getTypeVehicle() {
 		return typeVehicle;
 
 	}
 
 	public String getPlate() {
-		return Plate;
+		return plate;
 
 	}
 
 	public String getBrand() {
-		return Brand;
+		return brand;
 
 	}
 
 	public String getColor() {
-		return Color;
+		return color;
 
 	}
-    
+
 	public void setTypeVehicle(String typeVehicle) {
-		this.typeVehicle=typeVehicle;
+		this.typeVehicle = typeVehicle;
 	}
 
 	public void setPlate(String plate) {
-		this.Plate=plate;
+		this.plate = plate;
 
 	}
 
 	public void setBrand(String brand) {
-		this.Brand=brand;
+		this.brand = brand;
 
 	}
 
 	public void setColor(String colour) {
-		this.Color=colour;
+		this.color = colour;
 
 	}
-    
-    
-    
+
+	public String getFrontWheelBrand() {
+		return frontWheelBrand;
+
+	}
+
+	public String getBackWheelBrand() {
+		return backWheelBrand;
+
+	}
+
+	public float getFrontWheelDiameter() {
+		return frontWheelDiameter;
+
+	}
+
+	public float getBackWheelDiameter() {
+		return backWheelDiameter;
+
+	}
+
+	public void setFrontWheelBrand(String frontWheelBrand) {
+		this.frontWheelBrand = frontWheelBrand;
+
+	}
+
+	public void setBackWheelBrand(String backWheelBrand) {
+		this.backWheelBrand = backWheelBrand;
+
+	}
+
+	public void setFrontWheelDiameter(String frontWheelDiameter) {
+		this.frontWheelDiameter = Float.parseFloat(frontWheelDiameter);
+
+	}
+
+	public void setBackWheelDiameter(String backWheelDiameter) {
+		this.backWheelDiameter = Float.parseFloat(backWheelDiameter);
+
+	}
 
 }

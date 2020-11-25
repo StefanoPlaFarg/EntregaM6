@@ -14,7 +14,7 @@ public class MainApp {
 	/**
 	 * <h1>MainApp</h1>
 	 * Classe que crea un vehicle de tipus "car", l'emmagatzema en un repositori de Vehicles i imprimeix 
-	 * una llista de tots els vehicles guardats (imprimeix paràmetre tipus vehicle) 
+	 * una llista de tots els vehicles guardats (imprimeix paràmetre tipus vehicle) i les característiques de les rodes
 	 * 
 	 * @param args
 	 */
@@ -27,15 +27,18 @@ public class MainApp {
 		
 		try {
 		controller.createVehicle("car");//Creem el primer cotxe
+		System.out.println ("S'ha creat el cotxe correctament" );	
+		
 		
 		}catch (Exception e){
 			System.out.println ("No s'ha pogut crear el cotxe correctament" );
 			
 		}finally {//Imprimim el tipus de vehicle del repositori (en aquest cas:"cotxe")
-		    System.out.println ("S'ha creat el cotxe correctament" );			
+		    		
 			String allTypeVehiclesStored = controller.getAllTypeVehicles();
+			String allWheelsStored = controller.getAllWheelsFromVehicles();
 			System.out.println("Llista de vehicles guardats: " + allTypeVehiclesStored + " \n");	
-			
+			System.out.println("Llista de rodes de cada vehicle: " + allWheelsStored + " \n");
 		}
 		
 		
