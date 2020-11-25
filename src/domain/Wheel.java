@@ -1,4 +1,4 @@
-package com.vehicles.project;
+package domain;
 
 public class Wheel {
 	private String brand;

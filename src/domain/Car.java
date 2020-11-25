@@ -1,4 +1,4 @@
-package com.vehicles.project;
+package domain;
 
 import java.util.List;
 
