@@ -49,21 +49,23 @@ public class DataUser {
 	}
 
 	/**
-	 * Constructor de DataUser
+	 * Constructor de DataUser, el qual crea un objecte DataUser y emmagatzema el tipus de vehicle.
 	 * 
-	 * @param typeVehicle
-	 * @throws Exception
+	 * @param typeVehicle 
+	 * @throws Exception Llança una excepció en cas que el @param sigui diferent de "car"
+	 * NOTE: Per millorar el mètode es podria desenvolupar l'excepció i que es llençaria en
+	 * cas d'introduir un tipus de vehicle que no sigui car
 	 */
 	public DataUser(String typeVehicle) throws Exception {
 
-		if (typeVehicle.equals("car")) {
+		if (typeVehicle.toLowerCase().equals("car")) {
 
 			this.typeVehicle = typeVehicle.toLowerCase();
 
 		}
 
 		else {
-			throw new Exception();
+			throw new Exception("El vehcile no és de tipus cotxe");
 		}
 
 	}
@@ -75,8 +77,8 @@ public class DataUser {
 	 * 
 	 * @throws Exception
 	 * 
-	 *                   NOTE: Falta implementar el tipus d'excepció que llença en
-	 *                   cas d'introduir malament les dades
+	 * NOTE: Per millorar el mètode es podria desenvolupar l'excepció i que es llençaria en
+	 * cas que el tipus de vehicle no sigui de tipus cotxe
 	 */
 	public void askBasicCarDataToUser() throws Exception {
 		// TODO: Llençar Exception en cas que la marca, color o matrícula no encaixin
@@ -85,15 +87,136 @@ public class DataUser {
 			System.out.println("De quina marca és el cotxe?");
 			setBrand(myObj.nextLine().toLowerCase());
 			System.out.println("De quina color és el cotxe?");
-			setColor(myObj.nextLine().toLowerCase());
-			System.out.println("Quina matrícula té el cotxe?");
-			setPlate(myObj.nextLine().toLowerCase());
-
+			setColor(myObj.nextLine().toLowerCase());			
+			System.out.println("Quina matrícula té el cotxe?");			
+			//checkPlate (myObj.nextLine().toLowerCase());
+			checkPlate (myObj.nextLine());
 		}
 
 		else {
-			throw new Exception();
+			throw new Exception("El vehicle no és de tipus cotxe");
 		}
+	}
+
+	
+	
+	
+	private void checkPlate (String userPlateToCheck) throws Exception  {		
+		
+		//String userPlate =userPlateToCheck.toLowerCase();
+		String userPlate =userPlateToCheck;
+		
+		
+		if (checkFourNumbers(userPlate)&& checkTwoThreeLetters(userPlate)) {
+			setPlate(userPlate);
+		}
+		
+		else {
+			
+			throw new Exception("Matrícula de cotxe mal introduïda");
+		}
+		
+	}
+	
+	
+	private boolean checkFourNumbers(String userPlate) {
+		int numberCount=0;
+		
+		int length = 6;
+		
+		for (int i = 0; i <= length; i++) {
+			if (isNumber(userPlate.charAt(i))) {
+
+				numberCount++;
+
+			}
+
+		}
+		
+			
+		return numberCount==4;
+		
+		
+	}
+	
+	
+	
+    private boolean checkTwoThreeLetters(String userPlate) {
+		
+       int numberCount=0;
+		
+		for (int i = 0; i <= userPlate.length(); i++) {
+			if (isCharacter(userPlate.charAt(i))) {
+
+				numberCount++;
+
+			}
+
+		}
+		
+		
+		return numberCount==2 || numberCount==3;
+	}
+	
+	
+    private boolean isCharacter (char letter) {
+    	boolean flag=false;
+    	switch (letter) {
+    	case 'a':
+    	case 'b':
+    	case 'c':	
+    	case 'd':
+    	case 'e':
+    	case 'f':	
+    	case 'g':
+    	case 'h':
+    	case 'i':	
+    	case 'j':
+    	case 'k':
+    	case 'l':	    		
+    	case 'm':
+    	case 'n':
+    	case 'o':    	
+    	case 'p':
+    	case 'q':	
+    	case 'r':
+    	case 's':
+    	case 't':	
+    	case 'u':
+    	case 'v':
+    	case 'w':	
+    	case 'x':
+    	case 'y':
+    	case 'z':    		
+    		flag=true;
+    	default:
+    		flag=false;   	
+    	}    	
+    	return flag;    	 	
+    	
+    }
+    
+	private boolean isNumber(char letter) {
+		boolean flag = false;
+		switch (letter) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+			flag = true;
+		default:
+			flag = false;
+
+		}
+
+		return flag;
+
 	}
 
 	/**
@@ -103,8 +226,8 @@ public class DataUser {
 	 * 
 	 * @throws Exception
 	 * 
-	 *                   NOTE: Falta implementar el tipus d'excepció que llença en
-	 *                   cas d'introduir malament les dades
+	 * NOTE: Falta implementar el tipus d'excepció que llença en
+	 * cas d'introduir malament les dades
 	 */
 	public void askWheelDataToUser() throws Exception {
 
