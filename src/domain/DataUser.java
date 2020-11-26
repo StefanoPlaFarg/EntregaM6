@@ -90,7 +90,8 @@ public class DataUser {
 			setColor(myObj.nextLine().toLowerCase());			
 			System.out.println("Quina matrícula té el cotxe?");			
 			//checkPlate (myObj.nextLine().toLowerCase());
-			checkPlate (myObj.nextLine());
+			String userPlate =myObj.nextLine().toLowerCase() ;
+			checkPlate (userPlate);
 		}
 
 		else {
@@ -122,7 +123,8 @@ public class DataUser {
 	private boolean checkFourNumbers(String userPlate) {
 		int numberCount=0;
 		
-		int length = 6;
+		//int length = userPlate.length();
+		int length = userPlate.length();
 		
 		for (int i = 0; i <= length; i++) {
 			if (isNumber(userPlate.charAt(i))) {
