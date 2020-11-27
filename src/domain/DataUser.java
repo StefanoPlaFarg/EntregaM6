@@ -57,14 +57,20 @@ public class DataUser {
 	 */
 	public DataUser(String typeVehicle) throws Exception {
 
-		if (typeVehicle.toLowerCase().equals("car")) {
+		if (typeVehicle.equals("car")) {
 
-			this.typeVehicle = typeVehicle.toLowerCase();
+			this.typeVehicle = typeVehicle;
 
+		}
+		
+		else if (typeVehicle.equals("bike")) {
+			
+			this.typeVehicle = typeVehicle;
+			
 		}
 
 		else {
-			throw new Exception("El vehcile no és de tipus cotxe");
+			throw new Exception("El vehcile no és ni de tipus cotxe ni de tipus bike/moto");
 		}
 
 	}
@@ -80,7 +86,7 @@ public class DataUser {
 	 */
 	public void askBasicCarDataToUser() throws Exception {
 		// TODO: Llençar Exception en cas que la marca, color o matrícula no encaixin
-		if (typeVehicle.equals("car")) {
+		if (typeVehicle.equals("car") ) {
 
 			System.out.println("De quina marca és el cotxe?");
 			setBrand(myObj.nextLine().toLowerCase());
@@ -90,8 +96,20 @@ public class DataUser {
 			checkPlate (myObj.nextLine().toLowerCase()); //Comprovem si la matrícula compleix uns requeriments
 		}
 
+		
+		else if (typeVehicle.equals("bike")) {
+			
+			System.out.println("De quina marca és la bici/moto?");
+			setBrand(myObj.nextLine().toLowerCase());
+			System.out.println("De quina color és la bici/moto?");
+			setColor(myObj.nextLine().toLowerCase());			
+			System.out.println("Quina matrícula la bici/moto?");		
+			checkPlate (myObj.nextLine().toLowerCase()); //Comprovem si la matrícula compleix uns requeriments
+			
+		}
+		
 		else {
-			throw new Exception("El vehicle no és de tipus cotxe");
+			throw new Exception("El vehicle no és ni de tipus cotxe ni de tipus bike");
 		}
 	}
 
@@ -117,7 +135,7 @@ public class DataUser {
 		
 		else {
 			
-			throw new Exception("Matrícula de cotxe mal introduïda");
+			throw new Exception("Matrícula mal introduïda");
 		}
 		
 	}
@@ -261,6 +279,19 @@ public class DataUser {
 			System.out.println("Quina diametre tenen els pneumatics posteriors?");
 			checkDiameter (myObj.nextLine().toLowerCase(),"backWheels" ); //Comprovem si el diametre de la roda ha de ser superior a 0.4 i inferior a 4 
 		}
+		
+		else if (typeVehicle.equals("bike")) {
+			
+			System.out.println("Quina marca té el pneumatic davanter?");
+			setFrontWheelBrand(myObj.nextLine().toLowerCase());
+			System.out.println("Quina diametre te el pneumatic davanter?");			
+			checkDiameter (myObj.nextLine().toLowerCase(),"frontWheel" ); //Comprovem si el diametre de la roda ha de ser superior a 0.4 i inferior a 4 			
+			System.out.println("Quina marca te el pneumatic posterior?");
+			setBackWheelBrand(myObj.nextLine().toLowerCase());
+			System.out.println("Quina diametre te el pneumatic posterior?");
+			checkDiameter (myObj.nextLine().toLowerCase(),"backWheel" ); //Comprovem si el diametre de la roda ha de ser superior a 0.4 i inferior a 4 
+		
+		}
 
 		else {
 			throw new Exception("Les rodes introduides no formen de cap tipus de vehicle");
@@ -277,13 +308,13 @@ public class DataUser {
 
 		float diam = Float.parseFloat(diameter);
 
-		if (tire.equals("backWheels") && (diam >= 0.4 && diam <= 4)) {
+		if (tire.equals("backWheel") && (diam >= 0.4 && diam <= 4)) {
 
 			setBackWheelDiameter(diameter);
 
 		}
 
-		else if (tire.equals("frontWheels") && (diam >= 0.4 && diam <= 4)) {
+		else if (tire.equals("frontWheel") && (diam >= 0.4 && diam <= 4)) {
 
 			setFrontWheelDiameter(diameter);
 

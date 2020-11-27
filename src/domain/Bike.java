@@ -40,14 +40,10 @@ public void createWheels(String frontWheelBrand, String backWheelBrand, float fr
 		if (wheels.size() != 1)
 			throw new Exception();
 
-		Wheel rightWheel = wheels.get(0);
-		Wheel leftWheel = wheels.get(1);
-
-		if (!rightWheel.equals(leftWheel))
-			throw new Exception();
-
-		this.wheels.add(rightWheel);
-		this.wheels.add(leftWheel);
+		Wheel wheel= wheels.get(0);
+		
+		this.wheels.add(wheel);
+		
 	}
 	
 	
@@ -57,7 +53,7 @@ public void createWheels(String frontWheelBrand, String backWheelBrand, float fr
 	}
 	
 	public String getBackWheelBrand() {
-		 return wheels.get(2).getBrand();
+		 return wheels.get(1).getBrand();
 
 	}
 	
@@ -67,7 +63,7 @@ public void createWheels(String frontWheelBrand, String backWheelBrand, float fr
 	}
 	
 	public double getBackWheelDiameter() {
-		return wheels.get(2).getDiameter();
+		return wheels.get(1).getDiameter();
 
 	}
 	
