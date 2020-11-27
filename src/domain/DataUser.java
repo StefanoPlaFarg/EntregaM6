@@ -27,8 +27,8 @@ public class DataUser {
 	private float frontWheelDiameter;
 	private float backWheelDiameter;
 
-	List<Wheel> frontWheels = new ArrayList<Wheel>();
-	List<Wheel> backWheels = new ArrayList<Wheel>();
+	List<Wheel> frontWheels = new ArrayList<Wheel>();//repositori de les dues rodes davanteres
+	List<Wheel> backWheels = new ArrayList<Wheel>();//repositori de les dues rodes posteriors
 	Scanner myObj = new Scanner(System.in);
 
 	/**
@@ -53,8 +53,7 @@ public class DataUser {
 	 * 
 	 * @param typeVehicle 
 	 * @throws Exception Llança una excepció en cas que el @param sigui diferent de "car"
-	 * NOTE: Per millorar el mètode es podria desenvolupar l'excepció i que es llençaria en
-	 * cas d'introduir un tipus de vehicle que no sigui car
+	 *  
 	 */
 	public DataUser(String typeVehicle) throws Exception {
 
@@ -77,8 +76,7 @@ public class DataUser {
 	 * 
 	 * @throws Exception
 	 * 
-	 * NOTE: Per millorar el mètode es podria desenvolupar l'excepció i que es llençaria en
-	 * cas que el tipus de vehicle no sigui de tipus cotxe
+	 * 
 	 */
 	public void askBasicCarDataToUser() throws Exception {
 		// TODO: Llençar Exception en cas que la marca, color o matrícula no encaixin
@@ -88,10 +86,8 @@ public class DataUser {
 			setBrand(myObj.nextLine().toLowerCase());
 			System.out.println("De quina color és el cotxe?");
 			setColor(myObj.nextLine().toLowerCase());			
-			System.out.println("Quina matrícula té el cotxe?");			
-			//checkPlate (myObj.nextLine().toLowerCase());
-			String userPlate =myObj.nextLine().toLowerCase() ;
-			checkPlate (userPlate);
+			System.out.println("Quina matrícula té el cotxe?");		
+			checkPlate (myObj.nextLine().toLowerCase()); //Comprovem si la matrícula compleix uns requeriments
 		}
 
 		else {
@@ -102,6 +98,13 @@ public class DataUser {
 	
 	
 	
+	/**
+	 * Metode que comproba si la matrícula introduida per l'usuari té 4 números i 2 o 3 lletres de l'abeçadari (anglès)
+	 * Ex: 1111dd o 2145bsd són exemple de matrícules correctes
+	 * 
+	 * @param userPlateToCheck La matrícula introduida per l'usuari
+	 * @throws Exception
+	 */
 	private void checkPlate (String userPlateToCheck) throws Exception  {		
 		
 		//String userPlate =userPlateToCheck.toLowerCase();
@@ -120,13 +123,15 @@ public class DataUser {
 	}
 	
 	
+	/**
+	 * Mètode que comprova si la matrícula introduïda per l'usuari te 4 números
+	 * @param userPlate
+	 * @return boolean
+	 */
 	private boolean checkFourNumbers(String userPlate) {
-		int numberCount=0;
-		
-		//int length = userPlate.length();
-		int length = userPlate.length();
-		
-		for (int i = 0; i <= length; i++) {
+		int numberCount = 0;
+
+		for (int i = 0; i < userPlate.length(); i++) {
 			if (isNumber(userPlate.charAt(i))) {
 
 				numberCount++;
@@ -134,20 +139,22 @@ public class DataUser {
 			}
 
 		}
-		
-			
-		return numberCount==4;
-		
-		
+
+		return numberCount == 4;
+
 	}
 	
 	
-	
-    private boolean checkTwoThreeLetters(String userPlate) {
-		
-       int numberCount=0;
-		
-		for (int i = 0; i <= userPlate.length(); i++) {
+    /**
+     * Mètode que comprova si la matrícula introduïda per l'usuari te 2 o 3 lletres
+     * @param userPlate
+     * @return boolean
+     */
+	private boolean checkTwoThreeLetters(String userPlate) {
+
+		int numberCount = 0;
+
+		for (int i = 0; i < userPlate.length(); i++) {
 			if (isCharacter(userPlate.charAt(i))) {
 
 				numberCount++;
@@ -155,12 +162,15 @@ public class DataUser {
 			}
 
 		}
-		
-		
-		return numberCount==2 || numberCount==3;
+
+		return numberCount == 2 || numberCount == 3;
 	}
 	
-	
+    /**
+     * Metode que comprova si un caracter es una lletra de l'abeçadari (angles)
+     * @param letter
+     * @return boolean
+     */
     private boolean isCharacter (char letter) {
     	boolean flag=false;
     	switch (letter) {
@@ -191,6 +201,7 @@ public class DataUser {
     	case 'y':
     	case 'z':    		
     		flag=true;
+    		break;
     	default:
     		flag=false;   	
     	}    	
@@ -198,20 +209,26 @@ public class DataUser {
     	
     }
     
+	/**
+	 * Metode que comprova si un caracter és un número
+	 * @param letter
+	 * @return boolean
+	 */
 	private boolean isNumber(char letter) {
 		boolean flag = false;
 		switch (letter) {
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		case 5:
-		case 6:
-		case 7:
-		case 8:
-		case 9:
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
 			flag = true;
+			break;
 		default:
 			flag = false;
 
@@ -237,18 +254,48 @@ public class DataUser {
 
 			System.out.println("Quina marca tenen els pneumatics davanters?");
 			setFrontWheelBrand(myObj.nextLine().toLowerCase());
-			System.out.println("Quina diametre tenen els pneumatics davanters?");
-			setFrontWheelDiameter(myObj.nextLine());
+			System.out.println("Quina diametre tenen els pneumatics davanters?");			
+			checkDiameter (myObj.nextLine().toLowerCase(),"frontWheels" ); //Comprovem si el diametre de la roda ha de ser superior a 0.4 i inferior a 4 			
 			System.out.println("Quina marca tenen els pneumatics posteriors?");
 			setBackWheelBrand(myObj.nextLine().toLowerCase());
 			System.out.println("Quina diametre tenen els pneumatics posteriors?");
-			setBackWheelDiameter(myObj.nextLine());
+			checkDiameter (myObj.nextLine().toLowerCase(),"backWheels" ); //Comprovem si el diametre de la roda ha de ser superior a 0.4 i inferior a 4 
 		}
 
 		else {
-			throw new Exception();
+			throw new Exception("Les rodes introduides no formen de cap tipus de vehicle");
 		}
 	}
+	
+	/**
+	 * Metode que comprova si el diametre de les rodes són entre 0.4 i 4 i les assigna internament
+	 * @param diameter
+	 * @param tire Roda davantera o posterior
+	 * @throws Exception
+	 */
+	private void checkDiameter(String diameter, String tire) throws Exception {
+
+		float diam = Float.parseFloat(diameter);
+
+		if (tire.equals("backWheels") && (diam >= 0.4 && diam <= 4)) {
+
+			setBackWheelDiameter(diameter);
+
+		}
+
+		else if (tire.equals("frontWheels") && (diam >= 0.4 && diam <= 4)) {
+
+			setFrontWheelDiameter(diameter);
+
+		}
+
+		else {
+			throw new Exception("Diametre mal introduit");
+		}
+
+	}
+	
+	
 
 	public String getTypeVehicle() {
 		return typeVehicle;
