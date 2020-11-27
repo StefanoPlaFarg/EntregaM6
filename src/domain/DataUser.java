@@ -125,7 +125,7 @@ public class DataUser {
 	 */
 	private void checkPlate (String userPlateToCheck) throws Exception  {		
 		
-		//String userPlate =userPlateToCheck.toLowerCase();
+		
 		String userPlate =userPlateToCheck;
 		
 		
